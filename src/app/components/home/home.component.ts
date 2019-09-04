@@ -30,16 +30,13 @@ export class HomeComponent implements OnInit {
   }
 
 
-  private changeQuote() {
+  changeQuote() {
 
-    this.currentQuoteIndex += 1;
-    if (this.currentQuoteIndex > this.quoteCount) {
-      this.currentQuoteIndex = 0;
-    }
+    this.currentQuoteIndex = Math.ceil(Math.random() * this.quoteCount);
 
   }
 
-  private setQuoteCount(amount: number) {
+  setQuoteCount(amount: number) {
     this.quoteCount = amount;
   }
 }
