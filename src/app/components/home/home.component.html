@@ -1,10 +1,12 @@
 
-
 <mat-grid-list cols="2" rowHeight="90vh">
   <mat-grid-tile>
     <div><h1><span class="thin">Brandyn</span><br/>Britton</h1>
       <span class="slogan">Terrible Designer, Ok Developer</span><br/>
-      <span class="sub-slogan">God I hate Web Development</span>
+      <div class="quotes" *ngFor="let quote of quotes | async; let i = index ">
+        {{ setQuoteCount(i) }} <!-- Use this to pass the quote count to the backend -->
+        <span (click)="changeQuote()" [ngClass]="{'sub-slogan': true, 'hidden': currentQuoteIndex != i}" class="sub-slogan">{{ quote.text }}</span>
+      </div>
     </div>
 
   </mat-grid-tile>

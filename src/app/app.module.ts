@@ -8,6 +8,9 @@ import {MatGridListModule, MatToolbarModule, MatTooltipModule} from '@angular/ma
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 
 
 const appRoutes: Routes = [
@@ -29,6 +32,8 @@ const appRoutes: Routes = [
       appRoutes,
       {enableTracing: true}
     ),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatGridListModule,
