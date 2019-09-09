@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { NgxPageScrollModule } from 'ngx-page-scroll';
 
 
 const appRoutes: Routes = [
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     FontAwesomeModule,
     MatTooltipModule,
+    NgxPageScrollModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
