@@ -14,6 +14,10 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProjectComponent } from './components/project/project.component';
+import { LoginComponent } from './components/admin/login/login.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import {AuthGuard} from './auth.guard';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 
 const appRoutes: Routes = [
@@ -25,6 +29,10 @@ const appRoutes: Routes = [
     path: 'project/:projectName',
     component: ProjectComponent,
     data: {animation: 'isLeft'}
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: '',
@@ -40,7 +48,9 @@ const appRoutes: Routes = [
     HomeComponent,
     NavbarComponent,
     PageNotFoundComponent,
-    ProjectComponent
+    ProjectComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -49,6 +59,7 @@ const appRoutes: Routes = [
     ),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatGridListModule,

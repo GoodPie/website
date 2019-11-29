@@ -4,9 +4,7 @@ import {
   style,
   query,
   group,
-  animateChild,
   animate,
-  keyframes
 } from '@angular/animations';
 
 
@@ -25,7 +23,7 @@ function slideTo(direction) {
     query(':enter, :leave', [
       style({
         position: 'absolute',
-        top: '70px',
+        top: '65px',
         [direction]: 0,
         width: '100%'
       })
