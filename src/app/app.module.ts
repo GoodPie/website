@@ -12,21 +12,35 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ProjectComponent } from './components/project/project.component';
 
 
 const appRoutes: Routes = [
+  { path: '',
+    component: HomeComponent,
+    data: {animation: 'isRight'}
+  },
+  {
+    path: 'project/:projectName',
+    component: ProjectComponent,
+    data: {animation: 'isLeft'}
+  },
   {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
-  }
+  },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    PageNotFoundComponent,
+    ProjectComponent
   ],
   imports: [
     RouterModule.forRoot(

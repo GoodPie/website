@@ -10,60 +10,27 @@ mat-grid-list {
 }
 
 
-
-h1 {
+h2 {
   font-family: 'Roboto', sans-serif;
-  text-transform: uppercase;
-  transition: font-size 2s;
-  margin-bottom: 5px
+  font-size: 2.5em;
 }
 
-h1:hover {
-  transition: font-size 2s;
+#description {
+  width: 80%;
+  float: left;
+  margin-right: 10%;
 }
 
-.slogan {
-  font-size: 2.0em;
-  text-transform: uppercase;
-}
-
-.sub-slogan {
-  font-size: 0.8em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-h3 {
-  text-transform: uppercase;
-}
-
-ul {
-  padding-left: 0;
-}
-
-ul li {
-  list-style: none;
-  padding-top: 15px;
-  padding-left: 0;
-  margin-left: 0;
-}
-
-ul li a {
+#home-arrow {
+  position: absolute;
+  top: 75px;
+  left: 20px;
+  font-size: 2em;
   color: mat-color($mat-dark-theme-foreground, base);
-
 }
 
-ul li a:hover  {
-  color: mat-color($mat-blue-gray, 300);
-  transition: color 0.2s;
-}
-
-ul li a {
-  text-decoration: none;
-}
-
-ul li a:visited {
-  text-decoration: none;
+#home-arrow:hover {
+  color: mat-color($mat-amber, base);
 }
 
 .hidden {

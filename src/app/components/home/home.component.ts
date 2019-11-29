@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angu
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import { faAngleDown} from '@fortawesome/free-solid-svg-icons';
+import {slider} from '../../route.animation';
 
 export interface Quote { text: string; }
 
