@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatGridListModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
+import {MatGridListModule, MatSidenavModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -18,6 +18,7 @@ import { LoginComponent } from './components/admin/login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import {AuthGuard} from './auth.guard';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { QuotesComponent } from './components/admin/quotes/quotes.component';
 
 
 const appRoutes: Routes = [
@@ -35,6 +36,17 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'quotes',
+        component: QuotesComponent,
+        outlet: 'dashboard'
+      }
+    ]
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -50,7 +62,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     ProjectComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    QuotesComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -67,6 +80,7 @@ const appRoutes: Routes = [
     FontAwesomeModule,
     MatTooltipModule,
     NgxPageScrollModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

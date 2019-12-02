@@ -24,7 +24,7 @@ export class AuthService {
       switchMap(user => {
         if (user) {
           // User is logged in
-          return this.firestore.doc<User>('users/${user.uid}').valueChanges();
+          return this.firestore.doc<User>('users/' + user.uid).valueChanges();
         } else {
           // User is not logged in
           return of(null);
@@ -47,13 +47,15 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL
-    };
+    }
+
+    console.log(user);
 
     return userRef.set(data, {merge: true});
   }
 
   async signOut() {
     await this.firebaseAuth.auth.signOut();
-    await this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 }

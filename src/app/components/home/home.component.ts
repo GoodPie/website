@@ -3,8 +3,9 @@ import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firest
 import {Observable} from 'rxjs';
 import { faAngleDown} from '@fortawesome/free-solid-svg-icons';
 import {slider} from '../../route.animation';
+import {Quote, QuotesService} from '../../services/quotes.service';
 
-export interface Quote { text: string; }
+
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   // Used to fetch quotes from Firebase
   private quotesCollection: AngularFirestoreCollection<Quote>;
-  quotes: Observable<Quote[]>;
+  quotes: Quote[] = [];
   currentQuoteIndex = 0;
   quoteCount = 0;
 
@@ -25,10 +26,9 @@ export class HomeComponent implements OnInit {
 
   faDownArrow = faAngleDown;
 
-  constructor(db: AngularFirestore) {
+  constructor(quotesService: QuotesService) {
     // Begin fetching the quotes
-    this.quotesCollection = db.collection<Quote>('quotes');
-    this.quotes = this.quotesCollection.valueChanges();
+    quotesService.getAllQuotes().subscribe(quotes => this.quotes = quotes);
   }
 
   ngOnInit() {
