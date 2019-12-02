@@ -9,11 +9,20 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+
+  accessDenied = false;
+
   constructor(public auth: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.auth.user$.subscribe(value => {
-      this.router.navigate(['/dashboard']);
+      if (value !== null) {
+        if (value.roles === undefined || !value.roles.admin) {
+          this.accessDenied = true;
+        } else {
+          this.router.navigate(['/dashboard']);
+        }
+      }
     });
   }
 

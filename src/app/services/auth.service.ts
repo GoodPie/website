@@ -4,8 +4,9 @@ import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestor
 import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
 import {User} from '../models/user.model';
-import {switchMap} from 'rxjs/operators';
 import {auth} from 'firebase';
+import { switchMap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthService {
     private firestore: AngularFirestore,
     private router: Router
   ) {
+
     // Get the auth state and fetch the firestore user document
     this.user$ = this.firebaseAuth.authState.pipe(
       switchMap(user => {
@@ -33,29 +35,43 @@ export class AuthService {
     );
   }
 
-  async googleSignIn() {
+  googleSignIn() {
     const provider = new auth.GoogleAuthProvider();
-    const credential = await this.firebaseAuth.auth.signInWithPopup(provider);
-    return this.updateUserData(credential.user);
+    return this.firebaseAuth.auth.signInWithPopup(provider)
+      .then(credentials => this.updateUserData(credentials.user));
   }
 
-  private updateUserData(user) {
-    const userRef: AngularFirestoreDocument<User> = this.firestore.doc('users/' + user.uid);
+  private updateUserData(authData) {
+    const userRef: AngularFirestoreDocument<User> = this.firestore.doc('users/' + authData.uid);
 
-    const data = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL
-    }
+    const newUserData = {
+      uid: authData.uid,
+      email: authData.email,
+      displayName: authData.displayName,
+      profilePicture: authData.photoURL,
+    };
 
-    console.log(user);
+    userRef.valueChanges().subscribe(user => {
+      if (user.roles === {}) {
+        const userData = {
+          uid: authData.uid,
+          email: authData.email,
+          displayName: authData.displayName,
+          profilePicture: authData.photoURL,
+          roles: {}
+        };
 
-    return userRef.set(data, {merge: true});
+        return userRef.set(userData, {merge: true});
+      }
+    });
+
+
+    return userRef.set(newUserData, {merge: true});
   }
 
   async signOut() {
     await this.firebaseAuth.auth.signOut();
     this.router.navigate(['/']);
   }
+
 }
