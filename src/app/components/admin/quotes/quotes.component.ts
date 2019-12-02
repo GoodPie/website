@@ -9,12 +9,16 @@ import {Quote, QuotesService} from '../../../services/quotes.service';
 export class QuotesComponent implements OnInit {
 
   quotes: Quote[];
+  contentLoaded = false;
 
   constructor(private quoteService: QuotesService) { }
 
   ngOnInit() {
     // Get all the quotes
-    this.quoteService.getAllQuotes().subscribe(quotes => this.quotes = quotes);
+    this.quoteService.getAllQuotes().subscribe(quotes => {
+      this.contentLoaded = true;
+      this.quotes = quotes;
+    });
   }
 
 }

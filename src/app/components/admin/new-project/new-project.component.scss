@@ -1,0 +1,12 @@
+.new-project-form {
+  display: flex;
+  text-align: center;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.new-project-form .full-width-form-input {
+  width: 60%;
+}

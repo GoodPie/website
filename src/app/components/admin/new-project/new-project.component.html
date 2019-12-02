@@ -1,0 +1,57 @@
+<h3>Add A Project</h3>
+
+<form class="new-project-form" (ngSubmit)="onSubmit()" #projectForm="ngForm">
+
+  <mat-form-field>
+    <input
+      matInput
+      required
+      placeholder="Project Title"
+      [(ngModel)]="newProject.title"
+      name="title"
+      #name="ngModel"
+    />
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <input
+      matInput
+      required
+      placeholder="Project Slug"
+      [(ngModel)]="newProject.slug"
+      name="slug"
+    />
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width-form-input">
+    <textarea
+      matInput
+      required
+      placeholder="Project Description"
+      [(ngModel)]="newProject.description"
+      name="description"
+    >
+    </textarea>
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width-form-input">
+    <input
+      matInput
+      required
+      placeholder="Project URL"
+      [(ngModel)]="newProject.url"
+      name="url"
+     />
+  </mat-form-field>
+  <br/>
+  <button mat-button>Add New Project</button>
+</form>
+
+<div [hidden]="!submitted">
+  <h2>New Project ready for submission</h2>
+  {{ newProject.title }} {{ newProject.slug }}
+  <br/>
+  {{ newProject.description }}
+  <br/>
+  {{ newProject.url }}
+</div>
