@@ -3,9 +3,9 @@
 </div>
 
 <ng-template #guest>
-  <h1>Login</h1>
-
-  <button (click)="auth.googleSignIn()"><img src="./assets/images/btn_google_signin_dark_normal_web@2x.png"></button>
+  <div id="login-form">
+    <button class="google-sign-in-button" (click)="auth.googleSignIn()"></button>
+  </div>
 </ng-template>
 
 <ng-template #authenticated>

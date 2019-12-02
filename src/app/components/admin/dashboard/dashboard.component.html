@@ -1,1 +1,9 @@
-<p>dashboard works!</p>
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" id="dashboard-nav">
+    <a [routerLink]="[{ outlets: {'dashboard': ['quotes']}}]">Quotes</a>
+  </mat-sidenav>
+  <div id="dashboard-content">
+    aa
+    <router-outlet name="dashboard"></router-outlet>
+  </div>
+</mat-sidenav-container>
