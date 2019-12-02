@@ -24,3 +24,7 @@
 .google-sign-in-button:focus, .google-sign-in-button:active {
   background-image: url("~src/assets/images/btn_google_signin_light_pressed_web@2x.png");
 }
+
+#login-authenticated {
+  text-align: center;
+}

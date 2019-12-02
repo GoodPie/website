@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatGridListModule, MatSidenavModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
+import {MatButtonModule, MatGridListModule, MatListModule, MatSidenavModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -19,6 +19,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import {AuthGuard} from './auth.guard';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { QuotesComponent } from './components/admin/quotes/quotes.component';
+import { ProjectsComponent } from './components/admin/projects/projects.component';
 
 
 const appRoutes: Routes = [
@@ -37,11 +38,17 @@ const appRoutes: Routes = [
   },
   {
     path: 'dashboard',
+    canActivate: [AuthGuard],
     component: DashboardComponent,
     children: [
       {
         path: 'quotes',
         component: QuotesComponent,
+        outlet: 'dashboard'
+      },
+      {
+        path: 'projects',
+        component: ProjectsComponent,
         outlet: 'dashboard'
       }
     ]
@@ -63,7 +70,8 @@ const appRoutes: Routes = [
     ProjectComponent,
     LoginComponent,
     DashboardComponent,
-    QuotesComponent
+    QuotesComponent,
+    ProjectsComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -81,6 +89,8 @@ const appRoutes: Routes = [
     MatTooltipModule,
     NgxPageScrollModule,
     MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

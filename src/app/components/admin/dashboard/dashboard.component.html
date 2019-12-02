@@ -1,9 +1,20 @@
 <mat-sidenav-container>
   <mat-sidenav opened mode="side" id="dashboard-nav">
-    <a [routerLink]="[{ outlets: {'dashboard': ['quotes']}}]">Quotes</a>
+    <div id="dashboard-profile" *ngIf="authService.user$ | async as user">
+      <img width="100px" height="100px" [src]="user.profilePicture"/>
+      <p>Logged in as: <br/><b>{{user.displayName}}</b></p>
+    </div>
+
+    <mat-divider></mat-divider>
+    <a mat-button [routerLink]="[{ outlets: {'dashboard': ['quotes']}}]">Edit Quotes</a><br/>
+    <a mat-button [routerLink]="[{ outlets: {'dashboard': ['projects']}}]">Edit Projects</a><br/>
+    <mat-divider></mat-divider>
+    <a mat-button [routerLink]="['/']">Return Home</a>
+    <mat-divider></mat-divider>
+    <a mat-button (click)="authService.signOut()">Sign Out</a>
   </mat-sidenav>
   <div id="dashboard-content">
-    aa
+    <br/>
     <router-outlet name="dashboard"></router-outlet>
   </div>
 </mat-sidenav-container>

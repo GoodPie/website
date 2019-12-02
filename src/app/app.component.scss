@@ -1,5 +1,11 @@
 @import '~@angular/material/theming';
 
+html {
+  background: mat-color($mat-dark-theme-background, background) !important;
+}
+
 .hidden {
   display: none;
 }
+
+

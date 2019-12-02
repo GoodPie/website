@@ -1,4 +1,4 @@
-<div *ngIf="auth.user$ | async; then authenticated else guest">
+<div id="login-container" *ngIf="auth.user$ | async; then authenticated else guest">
 
 </div>
 
@@ -9,6 +9,10 @@
 </ng-template>
 
 <ng-template #authenticated>
-  <h1>Hello, <span *ngIf="auth.user$ | async as user">{{ user.displayName }}</span></h1>
-  <button (click)="auth.signOut()">Sign Out</button>
+  <div id="login-authenticated">
+    <h1>Hello, <span *ngIf="auth.user$ | async as user">{{ user.displayName }}</span></h1>
+    <h3 *ngIf="accessDenied">You do not have access to this page</h3>
+    <button mat-button mat-raised-button (click)="auth.signOut()">Sign Out</button>
+  </div>
+
 </ng-template>

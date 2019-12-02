@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Quote, QuotesService} from '../../../services/quotes.service';
 
 @Component({
   selector: 'app-quotes',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuotesComponent implements OnInit {
 
-  constructor() { }
+  quotes: Quote[];
+
+  constructor(private quoteService: QuotesService) { }
 
   ngOnInit() {
+    // Get all the quotes
+    this.quoteService.getAllQuotes().subscribe(quotes => this.quotes = quotes);
   }
 
 }

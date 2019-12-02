@@ -1,1 +1,6 @@
-<p>quotes works!</p>
+<h3>Quotes: </h3>
+<mat-list>
+  <mat-list id="quote-list" *ngFor="let quote of quotes">
+    {{ quote.text }}
+  </mat-list>
+</mat-list>
