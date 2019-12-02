@@ -1,4 +1,7 @@
 <h3>Quotes: </h3>
+
+
+<mat-spinner *ngIf="!contentLoaded" ></mat-spinner>
 <mat-list>
   <mat-list id="quote-list" *ngFor="let quote of quotes">
     {{ quote.text }}
