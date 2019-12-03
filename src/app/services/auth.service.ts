@@ -35,15 +35,23 @@ export class AuthService {
     );
   }
 
+  /**
+   * Signs user in via Google
+   */
   googleSignIn() {
     const provider = new auth.GoogleAuthProvider();
     return this.firebaseAuth.auth.signInWithPopup(provider)
       .then(credentials => this.updateUserData(credentials.user));
   }
 
+  /**
+   * Updates the users data to that found within the authentication provider
+   * @param authData Authentication data
+   */
   private updateUserData(authData) {
     const userRef: AngularFirestoreDocument<User> = this.firestore.doc('users/' + authData.uid);
 
+    // Default user data
     const newUserData = {
       uid: authData.uid,
       email: authData.email,
@@ -53,6 +61,8 @@ export class AuthService {
 
     userRef.valueChanges().subscribe(user => {
       if (user.roles === {}) {
+        // For users who were created without roles
+        // Do this so data isn't overridden if roles already exists
         const userData = {
           uid: authData.uid,
           email: authData.email,
@@ -61,14 +71,18 @@ export class AuthService {
           roles: {}
         };
 
+        // Update the user
         return userRef.set(userData, {merge: true});
       }
     });
 
-
+    // Update the user with the new auth data
     return userRef.set(newUserData, {merge: true});
   }
 
+  /**
+   * Signs the user out and redirects to the home page
+   */
   async signOut() {
     await this.firebaseAuth.auth.signOut();
     this.router.navigate(['/']);

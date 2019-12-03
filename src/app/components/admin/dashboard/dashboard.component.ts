@@ -9,15 +9,13 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  authService: AuthService;
+
+  constructor(authService: AuthService) {
+    this.authService = authService;
+  }
 
   ngOnInit() {
 
-  }
-
-  navigateTo(path) {
-    console.log("Navigating");
-    this.router.navigate([{outlets: {primary: path, dashboard: path}}],
-      {relativeTo: this.route});
   }
 }
