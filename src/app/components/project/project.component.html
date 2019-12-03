@@ -7,7 +7,7 @@
 
   <div id="project-showcase">
     <h2>{{ currentProject.title }}</h2>
-    <iframe *ngIf="currentProject.showcase.isVideo" frameborder="5" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe *ngIf="currentProject.showcase.isVideo" [src]="contentSource"  frameborder="5" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <img *ngIf="!currentProject.showcase.isVideo" [src]="currentProject.showcase.link" alt="{{ currentProject.title + ' thumbnail' }}"/>
   </div>
 

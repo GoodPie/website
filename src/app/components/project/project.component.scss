@@ -40,6 +40,9 @@ a:hover {
       width: 100%;
     }
 
+    iframe {
+      height: 350px;
+    }
   }
 
   #project-desc {
@@ -49,12 +52,12 @@ a:hover {
 
   #project-desc, #project-showcase {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    padding: 15%;
+    padding: 0px 15%;
+    min-height: calc(95vh - 64px);
   }
-
 }
 
 #project-not-found {
@@ -92,35 +95,43 @@ a:hover {
       img, iframe {
         width: 100%;
       }
-    }
 
-    #project-desc {
-      grid-column: 1;
-      grid-row: 2;
-    }
-
-  }
-
-}
-
-@media only screen and (max-width: 600px) {
-  .content-wrapper {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-
-    #project-showcase {
-      grid-column: 1;
-      grid-row: 1;
-      align-items: center;
-
-      img, iframe {
-        width: 100%;
+      iframe {
+        height: 375px;
       }
     }
 
     #project-desc {
       grid-column: 1;
       grid-row: 2;
+      min-height: 100vh;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content-wrapper {
+    display: grid;
+
+    #project-showcase {
+      grid-column: 1;
+      grid-row: 1;
+      align-items: center;
+      text-align: center;
+
+      img, iframe {
+        width: 100%;
+      }
+
+      iframe {
+        height: 200px;
+      }
+    }
+
+    #project-desc {
+      grid-column: 1;
+      grid-row: 2;
+      min-height: 100vh;
     }
 
   }
