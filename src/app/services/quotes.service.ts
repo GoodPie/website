@@ -15,10 +15,17 @@ export class QuotesService {
     this.quotesCollection = this.db.collection<Quote>('quotes');
   }
 
+  /**
+   * Fetches all quotes without meta data
+   */
   getAllQuotes(): Observable<Quote[]> {
     return this.quotesCollection.valueChanges();
   }
 
+  /**
+   * Adds a new quote to Firebase
+   * @param quote Quote quote object
+   */
   addNewQuote(quote: Quote) {
     this.quotesCollection.add(quote);
   }

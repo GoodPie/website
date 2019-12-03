@@ -9,7 +9,10 @@ import {ProjectService} from '../../../services/project.service';
 })
 export class NewProjectComponent implements OnInit {
 
+  // Create an empty project for 2 way binding. We can utilize this later for editing posts
   newProject = new Project('', '', '', new ProjectShowcase(false, ''), '');
+
+  // Whether project has been submitted or not
   submitted = false;
 
   constructor(private projectService: ProjectService) { }
@@ -20,6 +23,8 @@ export class NewProjectComponent implements OnInit {
   onSubmit( ) {
     this.submitted = true;
 
+    // Have to repackage the data for Firebase
+    // TODO: Move to the actual class
     const data = {
       title: this.newProject.title,
       slug: this.newProject.slug,
@@ -33,6 +38,9 @@ export class NewProjectComponent implements OnInit {
       url: this.newProject.url
     };
 
+    // TODO: Authentication (low priority because only I will be adding data)
+
+    // Use the service to publish the new project
     this.projectService.addNewProject(data);
   }
 

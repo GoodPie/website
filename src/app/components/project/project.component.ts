@@ -19,18 +19,16 @@ export interface Quote { text: string; }
 export class ProjectComponent implements OnInit {
 
   // Get the project information
-  private projectName: string;
-  private currentProject: Project;
-  private projectLoaded = false;
+  projectName: string;
+  currentProject: Project;
+  projectLoaded = false;
+  projectExists = true;
 
   private contentSource: SafeResourceUrl;
 
   // Amount of columns to display depending on view width
   columnCount: number;
   faBackArrow = faArrowLeft;
-
-  // Whether the project actually exists
-  private projectExists = true;
 
   constructor(private projectService: ProjectService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
   }
@@ -39,37 +37,42 @@ export class ProjectComponent implements OnInit {
     // Ensure the correct column count is displayed on initial load
     this.columnCount = (window.innerWidth <= 600) ? 1 : 2;
 
-    // Get the current reoute
+    // Fetch project name from URL and then attempt to get project data from Firebase
     this.route.paramMap.subscribe(params => {
-        this.projectName = params.get('projectName');
-        this.projectService.getProject(this.projectName).subscribe(project => {
-          if (project) {
 
-            try {
-              console.log(project);
-              this.currentProject = project as Project;
-              if (this.currentProject.showcase.isVideo) {
-                this.contentSource = this.sanitizer.bypassSecurityTrustResourceUrl(this.currentProject.showcase.link);
-              }
-              this.projectExists = true;
-              this.projectLoaded = true;
-            } catch (e) {
-              console.log(e);
-              this.projectExists = false;
-              this.projectLoaded = true;
-            }
-          } else {
-            this.projectExists = false;
-            this.projectLoaded = true;
-          }
-        });
+        this.projectName = params.get('projectName');
+        this.fetchProject();
     });
 
 
   }
 
-  cleaniFrameUrl(url: string) {
+  /**
+   * Fetch project data from Firebase if it exists
+   */
+  private fetchProject() {
+    this.projectService.getProject(this.projectName).subscribe(project => {
+      if (project) {
+        this.projectLoaded = true;
+        try {
+          // Attempt to cast project to Project class
+          this.currentProject = project as Project;
 
+          // Sanitize the URL for the embedded videos
+          if (this.currentProject.showcase.isVideo) {
+            this.contentSource = this.sanitizer.bypassSecurityTrustResourceUrl(this.currentProject.showcase.link);
+          }
+          // Project exists and has been loaded successfully
+          this.projectExists = true;
+        } catch (e) {
+          // Project does not exist
+          this.projectExists = false;
+        }
+      } else {
+        // Project does not exist
+        this.projectExists = false;
+      }
+    });
   }
 
   /**
