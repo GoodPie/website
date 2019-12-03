@@ -1,25 +1,30 @@
 
-
-<mat-grid-list cols="2" rowHeight="90vh">
-  <mat-grid-tile>
-    <div><h1><span class="thin">Brandyn</span><br/>Britton</h1>
+<mat-grid-list [cols]="columnCount" rowHeight="90vh" (window:resize)="onResize($event)">
+  <mat-grid-tile id="name-display">
+    <div>
+      <h1><span class="thin">Brandyn</span><br/>Britton</h1>
       <span class="slogan">Terrible Designer, Ok Developer</span><br/>
-      <span class="sub-slogan">God I hate Web Development</span>
+      <div class="quotes" *ngFor="let quote of quotes; let i = index ">
+        {{ setQuoteCount(i) }} <!-- Use this to pass the quote count to the backend -->
+        <span (click)="changeQuote()" [ngClass]="{'sub-slogan': true, 'hidden': currentQuoteIndex != i}" class="sub-slogan">{{ quote.text }}</span>
+      </div>
+      <br/>
+      <a *ngIf="columnCount===1" pageScroll href="#project-display"><fa-icon style="padding-left: 0; font-size: 1.2em" class="mat-icon" [icon]="faDownArrow"></fa-icon></a>
     </div>
 
   </mat-grid-tile>
 
-  <mat-grid-tile class="mat-background-primary">
+
+  <mat-grid-tile id="project-display" class="mat-background-primary">
     <div>
-      <h3>Some of my Open Source Projects:</h3>
+      <h3>Some of my Projects:</h3>
       <ul>
-        <a href="https://github.com/GoodPie/BurgerBot"><li>Burger Bot</li></a>
-        <a href="https://github.com/Goodpie-zz/chip-manager-web"><li>Poker Chips</li></a>
-        <a href="https://github.com/GoodPie/The-Forming"><li>The Forming</li></a>
-        <a href="https://github.com/GoodPie/LED-Visualizer"><li>LED Visualizer</li></a>
-        <a href="https://github.com/GoodPie/youtube"><li>YouTube</li></a>
+        <li><a [routerLink]="['/project', 'website']">Website</a></li>
+        <li><a [routerLink]="['/project', 'casino-chips']">Casino Chip Manager</a></li>
+        <li><a [routerLink]="['/project', 'burger-bot']">Burger Bot</a></li>
+        <li><a [routerLink]="['/project', 'boss-alert']">Boss Alert</a></li>
+        <li><a [routerLink]="['/project', 'youtube-channel']">YouTube Channel</a></li>
       </ul>
     </div>
-
   </mat-grid-tile>
 </mat-grid-list>

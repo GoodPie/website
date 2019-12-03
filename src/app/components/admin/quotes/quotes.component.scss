@@ -1,0 +1,7 @@
+@import '~@angular/material/theming';
+
+#quote-list {
+  padding: 10px;
+  margin: 15px;
+  background: mat-color($mat-dark-theme-background, card);
+}

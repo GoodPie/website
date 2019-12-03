@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+
+body {
+  background: mat-color($mat-dark-theme-background, background);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.center {
+  text-align: center;
+  min-height: 100vh;
+  background: mat-color($mat-dark-theme-background, background);
+  color: mat-color($mat-dark-theme-foreground, base);
+}
