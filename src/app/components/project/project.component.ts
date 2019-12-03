@@ -24,7 +24,8 @@ export class ProjectComponent implements OnInit {
   projectLoaded = false;
   projectExists = true;
 
-  private contentSource: SafeResourceUrl;
+  // Sanitized URL for YouTube embedded videos
+  contentSource: SafeResourceUrl;
 
   // Amount of columns to display depending on view width
   columnCount: number;
