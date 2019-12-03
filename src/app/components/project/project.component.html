@@ -1,0 +1,28 @@
+<div *ngIf="!projectLoaded" style="position: absolute; top: 50%; left: 50%">
+  <mat-spinner></mat-spinner>
+</div>
+
+
+<div *ngIf="projectLoaded && projectExists" class="content-wrapper" >
+
+  <div id="project-showcase">
+    <h2>{{ currentProject.title }}</h2>
+    <iframe *ngIf="currentProject.showcase.isVideo" frameborder="5" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <img *ngIf="!currentProject.showcase.isVideo" [src]="currentProject.showcase.link" alt="{{ currentProject.title + ' thumbnail' }}"/>
+  </div>
+
+  <div id="project-desc">
+      <h3>Description:</h3>
+      <p [innerHTML]="currentProject.description"></p>
+      <p *ngIf="currentProject.url !== 'NA'">Link: <a target="_blank" href="{{ currentProject.url}}">{{ currentProject.url }}</a></p>
+  </div>
+
+</div>
+
+<div *ngIf="projectLoaded && !projectExists" id="project-not-found">
+  <h2>Failed to find project: {{ projectName }}</h2>
+  <p>If you believe this to be an error, feel free to contact me and I'll sort it out ASAP</p>
+  <p>Otherwise, click here to <a routerLink="/" routerLinkActive="active">return home</a></p>
+</div>
+
+<a id="home-arrow" routerLink="/" routerLinkActive="active"><fa-icon class="mat-icon" [icon]="faBackArrow" ></fa-icon></a>
