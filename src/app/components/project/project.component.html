@@ -2,25 +2,22 @@
   <mat-spinner></mat-spinner>
 </div>
 
-<mat-grid-list *ngIf="projectLoaded && projectExists" [cols]="columnCount" rowHeight="90vh" (window:resize)="onResize($event)">
-  <mat-grid-tile id="project-showcase">
-  <div>
+
+<div *ngIf="projectLoaded && projectExists" class="content-wrapper" >
+
+  <div id="project-showcase">
     <h2>{{ currentProject.title }}</h2>
-    <iframe *ngIf="currentProject.showcase.isVideo" width="620px" height="350px"  [src]="contentSource" frameborder="5" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <img *ngIf="!currentProject.showcase.isVideo" [src]="currentProject.showcase.link" width="{{ currentProject.showcase.width }}" height="{{ currentProject.showcase.height  }}" alt="{{ currentProject.title + ' thumbnail' }}"/>
+    <iframe *ngIf="currentProject.showcase.isVideo" [src]="contentSource"  frameborder="5" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <img *ngIf="!currentProject.showcase.isVideo" [src]="currentProject.showcase.link" alt="{{ currentProject.title + ' thumbnail' }}"/>
   </div>
-  </mat-grid-tile>
 
-
-  <mat-grid-tile id="project-desc" class="mat-background-primary">
-    <div id="description">
+  <div id="project-desc">
       <h3>Description:</h3>
       <p [innerHTML]="currentProject.description"></p>
-
       <p *ngIf="currentProject.url !== 'NA'">Link: <a target="_blank" href="{{ currentProject.url}}">{{ currentProject.url }}</a></p>
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>
+  </div>
+
+</div>
 
 <div *ngIf="projectLoaded && !projectExists" id="project-not-found">
   <h2>Failed to find project: {{ projectName }}</h2>

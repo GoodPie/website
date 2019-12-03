@@ -29,7 +29,12 @@ export class ProjectComponent implements OnInit {
 
   // Amount of columns to display depending on view width
   columnCount: number;
+  descRowSpan: number;
+  imgRowSpan: number;
+
   faBackArrow = faArrowLeft;
+
+
 
   constructor(private projectService: ProjectService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
   }
@@ -82,6 +87,8 @@ export class ProjectComponent implements OnInit {
    */
   onResize(event) {
     this.columnCount = (window.innerWidth <= 600) ? 1 : 2;
+    this.descRowSpan = (window.innerWidth <= 600) ? 1 : 2;
+    this.imgRowSpan = (window.innerWidth <= 600) ? 1 : 0.5;
   }
 
 }
