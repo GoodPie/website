@@ -1,0 +1,141 @@
+@import '~@angular/material/theming';
+
+body {
+  background: mat-color($mat-dark-theme-background, background);
+}
+
+mat-grid-list {
+  background: mat-color($mat-dark-theme-background, background);
+  color: mat-color($mat-dark-theme-foreground, base);
+}
+
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.5em;
+}
+
+a {
+  color: mat-color($mat-dark-theme-foreground, text);
+  transition: color 500ms;
+}
+
+a:hover {
+  color: mat-color($mat-dark-theme-foreground, secondary-text);
+  transition: color 500ms;
+}
+
+
+.content-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(calc(95vh - 64px), auto);
+  color: mat-color($mat-dark-theme-foreground, text);
+
+  #project-showcase {
+    grid-column: 1;
+    grid-row: 1;
+
+    img, iframe {
+      width: 100%;
+    }
+
+    iframe {
+      height: 350px;
+    }
+  }
+
+  #project-desc {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  #project-desc, #project-showcase {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0px 15%;
+    min-height: calc(95vh - 64px);
+  }
+}
+
+#project-not-found {
+  text-align: center;
+  padding: 20px;
+  color: mat-color($mat-dark-theme-foreground, text);
+}
+
+
+#home-arrow {
+  position: absolute;
+  top: 75px;
+  left: 20px;
+  font-size: 2em;
+  color: mat-color($mat-dark-theme-foreground, base);
+}
+
+#home-arrow:hover {
+  color: mat-color($mat-amber, base);
+}
+
+.hidden {
+  display: none;
+}
+
+@media only screen and (max-width: 1100px) {
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
+    #project-showcase {
+      grid-column: 1;
+      grid-row: 1;
+
+      img, iframe {
+        width: 100%;
+      }
+
+      iframe {
+        height: 375px;
+      }
+    }
+
+    #project-desc {
+      grid-column: 1;
+      grid-row: 2;
+      min-height: 100vh;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content-wrapper {
+    display: grid;
+
+    #project-showcase {
+      grid-column: 1;
+      grid-row: 1;
+      align-items: center;
+      text-align: center;
+
+      img, iframe {
+        width: 100%;
+      }
+
+      iframe {
+        height: 200px;
+      }
+    }
+
+    #project-desc {
+      grid-column: 1;
+      grid-row: 2;
+      min-height: 100vh;
+    }
+
+  }
+
+
+
+}

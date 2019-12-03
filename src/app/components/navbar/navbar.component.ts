@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faGithub, faSnapchatGhost} from '@fortawesome/free-brands-svg-icons';
+import {faFacebook, faGithub, faLinkedin, faSnapchatGhost} from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +10,8 @@ export class NavbarComponent implements OnInit {
 
   faGithub = faGithub;
   faSnapchat = faSnapchatGhost;
+  faFacebook = faFacebook;
+  faLinkedin = faLinkedin;
 
   constructor() { }
 

@@ -1,0 +1,25 @@
+body {
+  height: 100vh;
+}
+
+#dashboard-nav {
+  height: 100vh;
+  min-height: 100%;
+  padding: 10px;
+}
+
+#dashboard-profile {
+  text-align: center;
+}
+
+#dashboard-profile img {
+  border-radius: 50%;
+}
+
+#dashboard-content {
+  padding: 0 50px 50px 50px;
+
+  // The height is calculated based on the nav bar (63px) plus the padding (50px) + 1px which removes the scroll bar
+  // when not needed
+  min-height: calc(100vh - 114px)
+}
