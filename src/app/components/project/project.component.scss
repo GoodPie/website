@@ -13,6 +13,26 @@ mat-grid-list {
 h2 {
   font-family: 'Roboto', sans-serif;
   font-size: 2.5em;
+
+}
+
+#project-not-found {
+  text-align: center;
+  padding: 20px;
+  color: mat-color($mat-dark-theme-foreground, text);
+
+
+
+}
+
+a {
+  color: mat-color($mat-dark-theme-foreground, text);
+  transition: color 500ms;
+}
+
+a:hover {
+  color: mat-color($mat-dark-theme-foreground, secondary-text);
+  transition: color 500ms;
 }
 
 #description {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Project} from '../../../models/project.model';
+import {Project, ProjectShowcase} from '../../../models/project.model';
 import {ProjectService} from '../../../services/project.service';
 
 @Component({
@@ -9,7 +9,7 @@ import {ProjectService} from '../../../services/project.service';
 })
 export class NewProjectComponent implements OnInit {
 
-  newProject = new Project('', '', '', '');
+  newProject = new Project('', '', '', new ProjectShowcase(false, ''), '');
   submitted = false;
 
   constructor(private projectService: ProjectService) { }
@@ -24,6 +24,12 @@ export class NewProjectComponent implements OnInit {
       title: this.newProject.title,
       slug: this.newProject.slug,
       description: this.newProject.description,
+      showcase: {
+        isVideo: this.newProject.showcase.isVideo,
+        link: this.newProject.showcase.link,
+        height: this.newProject.showcase.height,
+        width: this.newProject.showcase.width
+      },
       url: this.newProject.url
     };
 

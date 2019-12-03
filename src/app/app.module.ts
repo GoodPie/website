@@ -5,11 +5,11 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatFormFieldModule,
+  MatButtonModule, MatCheckboxModule, MatFormFieldModule,
   MatGridListModule, MatInputModule,
   MatListModule,
   MatProgressSpinnerModule,
-  MatSidenavModule,
+  MatSidenavModule, MatTabsModule,
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
@@ -110,7 +110,9 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatTabsModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent],
