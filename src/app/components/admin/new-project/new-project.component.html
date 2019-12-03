@@ -44,7 +44,21 @@
      />
   </mat-form-field>
   <br/>
-  <button mat-button>Add New Project</button>
+  <h3>Project Showcase</h3>
+  <mat-form-field>
+    <input
+      matInput
+      required
+      placeholder="Project Showcase"
+      [(ngModel)]="newProject.showcase.link"
+      name="showcaseLink"
+    />
+  </mat-form-field>
+  <mat-checkbox
+    [(ngModel)]="newProject.showcase.isVideo"
+    name="showcaseIsVideo">Is Video</mat-checkbox>
+
+  <button style="margin-top: 20px" mat-button mat-raised-button>Add New Project</button>
 </form>
 
 <div [hidden]="!submitted">

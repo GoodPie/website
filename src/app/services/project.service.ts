@@ -9,6 +9,7 @@ import {Observable} from 'rxjs';
 export class ProjectService {
 
   private projectCollection: AngularFirestoreCollection<Project>;
+  currentProject: Project;
 
   constructor(private db: AngularFirestore) {
     this.projectCollection = this.db.collection<Project>('projects');
@@ -16,6 +17,10 @@ export class ProjectService {
 
   getAllProjects(): Observable<Project[]> {
     return this.projectCollection.valueChanges();
+  }
+
+  getProject(name: string) {
+    return this.projectCollection.doc(name).valueChanges();
   }
 
   addNewProject(project: Project) {
