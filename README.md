@@ -1,27 +1,31 @@
-# My Personal Website
+# Personal Website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2.
+This is the repository to my personal website where I showcase what I've done and experiment with new technologies. 
 
-## Development server
+Tech Stack Used:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Angular 10 
+- Firebase (auth, firestore, storage, functions)
+- Angular Materials
 
-## Code scaffolding
+## Setup
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Once the repository is clone, run:
 
-## Build
+```npm install```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The environments will need to be setup. For this, refer to the [Angular documentation](https://angular.io/guide/build). 
 
-## Running unit tests
+The Firebase configuration will also be required in
+environments. Follow the [AngularFire documentation](https://github.com/angular/angularfire/blob/master/docs/install-and-setup.md) on how to add the configurations.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Roadmap
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- [x] Firebase Integration
+- [x] Admin Page
+- [x] Projects Interface
+- [x] Add Projects via Admin
+- [ ] Blog Interface
+- [ ] Add / Edit blog post via Admin
+- [ ] Front Page Redesign
+- [ ] Projects Page Redesign
