@@ -2,6 +2,8 @@
 
 This is the repository to my personal website where I showcase what I've done and experiment with new technologies. 
 
+[Link](https://brandynbb.com)
+
 Tech Stack Used:
 
 - Angular 10 
